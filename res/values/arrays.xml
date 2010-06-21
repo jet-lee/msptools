@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<integer-array name="gsm_update_rates"><item>0</item>
+<item>5</item>
+<item>10</item>
+<item>15</item>
+<item>30</item>
+<item>60</item>
+</integer-array>
+<string-array name="update_freq_options"><item>auto</item><item>5</item>
+<item>10</item>
+<item>15</item>
+<item>30</item>
+<item>60</item>
+
+</string-array>
+</resources>

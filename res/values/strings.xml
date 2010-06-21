@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string name="app_name">msptools</string>
+<string name="gsm_activity_name">GSM</string>
+<string name="gps_activity_name">GPS</string>
+<string name="ekahau_activity_name">Ekahau</string>
+<string name="chat_client_activity_name">Chat-Client</string>
+<string name="msp_client_activity_name">MSP-Client</string>
+<string name="menu_preferences">Preferences</string>
+<string name="menu_update">Update</string>
+<string name="update_freq_promt">Select Update Frequency</string>
+<string name="ok">OK</string>
+<string name="cancel">Cancel</string>
+<string name="gsm_preferences">GSM Preferences</string>
+</resources>
+
+

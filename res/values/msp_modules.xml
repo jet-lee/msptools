@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="msp_modules_array">
+        <item>GSM</item>
+        <item>Chat-Client</item>
+        <item>GPS</item>
+        <item>Ekahau</item>
+        <item>MSP-Client</item>
+    </string-array>
+</resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="EkahauServerName">129.187.214.234</string>
+<string name="EkahauServerELPPort">8552</string>
+<string name="EkahauServerEMPPort">8553</string>
+</resources>
