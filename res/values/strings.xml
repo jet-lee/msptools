@@ -13,6 +13,7 @@
 <string name="ok">OK</string>
 <string name="cancel">Cancel</string>
 <string name="gsm_preferences">GSM Preferences</string>
+<string name="ekahau_update_intent_name">ekahau_update</string>
 </resources>
 
 

@@ -18,7 +18,13 @@
 		<activity android:name="MSPClientActivity" android:label="@string/msp_client_activity_name"></activity>
 		<activity android:name="GsmMonitorActivity" android:label="GsmMonitorActivity"></activity>
 		<activity android:name="OettingenActivity" android:label="OettingenActivity"></activity>
-
+						
+		<activity android:name="EkahauMapActivity" android:label="EkahauMapActivity"></activity>
+		<activity android:name="EkahauActivity" android:label="EkahauActivity"></activity>
+		
+		<service android:name=".wlan.EkahauDataCatcher" android:enabled="true"></service>
+		
+		
 		<uses-library android:name="com.google.android.maps"/>
 	</application>
 	<uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>

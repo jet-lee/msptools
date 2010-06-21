@@ -56,6 +56,13 @@ public class MainActivity extends Activity {
 					 
 					 startActivity(gpsActivity); 
 					 break;
+					 
+				case 3: // Ekahau Activity
+					
+					Intent ekahauActivity = new Intent(MainActivity.this,EkahauActivity.class);
+					
+					startActivity(ekahauActivity);
+					break;
 					
 				}
 				
