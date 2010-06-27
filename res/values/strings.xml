@@ -14,6 +14,8 @@
 <string name="cancel">Cancel</string>
 <string name="gsm_preferences">GSM Preferences</string>
 <string name="ekahau_update_intent_name">ekahau_update</string>
+<string name="nickname_promt">choose your nick</string>
+<string name="send_position">Send Position</string>
 </resources>
 
 

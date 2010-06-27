@@ -30,6 +30,26 @@
  		android:text="  OK  "
  		
  	 />
+ 	 
+ 	 
+ <EditText
+ 		android:id="@+id/edit_nickname"
+ 		android:layout_width="wrap_content"
+ 		android:layout_height="wrap_content"
+ 		android:layout_gravity="center"
+ 		android:text="@string/nickname_promt"		
+ 		
+ />
+ 
+ <CheckBox 
+   	android:id="@+id/position_box"
+  	android:layout_width="fill_parent"
+  	android:layout_height="wrap_content"
+  	android:textSize="12sp"
+  	android:checked="false"
+  	android:text="@string/send_position"
+ 
+ />
 </LinearLayout>
 
 

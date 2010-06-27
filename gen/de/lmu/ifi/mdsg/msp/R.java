@@ -24,22 +24,24 @@ public final class R {
         public static final int oetti=0x7f020005;
     }
     public static final class id {
-        public static final int ScrollView01=0x7f06000d;
+        public static final int ScrollView01=0x7f06000f;
         public static final int ScrollView2=0x7f060002;
         public static final int ScrollView3=0x7f060000;
-        public static final int buttonOettingen=0x7f06000f;
-        public static final int button_start_ekahau_positioning=0x7f06000b;
-        public static final int button_stop_ekahau_positioning=0x7f06000c;
+        public static final int buttonOettingen=0x7f060011;
+        public static final int button_start_ekahau_positioning=0x7f06000d;
+        public static final int button_stop_ekahau_positioning=0x7f06000e;
         public static final int cancelButton=0x7f060006;
         public static final int chat_ausgabe=0x7f060008;
         public static final int chat_button=0x7f06000a;
         public static final int chat_eingabe=0x7f060009;
-        public static final int ekahautextview=0x7f06000e;
-        public static final int gpstextview=0x7f060010;
-        public static final int gsmMapView=0x7f060012;
-        public static final int gsmtextview=0x7f060011;
+        public static final int edit_nickname=0x7f06000b;
+        public static final int ekahautextview=0x7f060010;
+        public static final int gpstextview=0x7f060012;
+        public static final int gsmMapView=0x7f060014;
+        public static final int gsmtextview=0x7f060013;
         public static final int modulesListView=0x7f060007;
         public static final int okButton=0x7f060005;
+        public static final int position_box=0x7f06000c;
         public static final int update_freq=0x7f060004;
         public static final int view_of_ifi=0x7f060003;
         public static final int view_of_ifi_ekahau=0x7f060001;
@@ -71,7 +73,9 @@ public final class R {
         public static final int menu_preferences=0x7f050009;
         public static final int menu_update=0x7f05000a;
         public static final int msp_client_activity_name=0x7f050008;
+        public static final int nickname_promt=0x7f050010;
         public static final int ok=0x7f05000c;
+        public static final int send_position=0x7f050011;
         public static final int update_freq_promt=0x7f05000b;
     }
 }
