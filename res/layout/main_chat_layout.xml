@@ -27,7 +27,7 @@
  		android:layout_width="wrap_content"
  		android:layout_height="wrap_content"
  		android:layout_gravity="center"
- 		android:text="  OK  "
+ 		android:text="@string/ok"
  		
  	 />
  	 
@@ -37,19 +37,41 @@
  		android:layout_width="wrap_content"
  		android:layout_height="wrap_content"
  		android:layout_gravity="center"
- 		android:text="@string/nickname_promt"		
+ 		android:hint="@string/nickname_promt"		
  		
  />
  
- <CheckBox 
-   	android:id="@+id/position_box"
-  	android:layout_width="fill_parent"
-  	android:layout_height="wrap_content"
-  	android:textSize="12sp"
-  	android:checked="false"
-  	android:text="@string/send_position"
  
- />
+  
+ <LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="horizontal"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+  
+ 	<CheckBox 
+   		android:id="@+id/position_box"
+  		android:layout_width="wrap_content"
+  		android:layout_height="wrap_content"
+  		android:textSize="12sp"
+  		android:checked="false"
+  		android:text="@string/send_position"
+ 
+	 />
+	 
+	 <Button
+	 	android:id="@+id/buddy_button"
+	 	android:layout_width="wrap_content"
+	 	android:layout_height="fill_parent"
+	 	android:text="@string/buddy_button"
+	 	
+	 />
+</LinearLayout>
+ 
+
+
+ 
+
 </LinearLayout>
 
 

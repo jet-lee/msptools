@@ -28,6 +28,7 @@ public class EkahauMapActivity extends Activity {
 	}
 
 	class PositionReceiver extends BroadcastReceiver {
+		
 		public void onReceive(Context c, Intent intent) {
 			//TODO get the position data
 			

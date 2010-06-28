@@ -12,15 +12,23 @@ import java.util.HashMap;
 import java.util.Map;
 
 import android.app.Activity;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.res.Resources;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
+import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -31,15 +39,17 @@ import android.widget.EditText;
 public class ChatClientActivity extends Activity {
 
 	/*******************************************/
-	String mynickname = "Monster";
+	public static String mynickname = "Monster";
 	
 	String inputLine;
 	String positionLine;
 	
-	private Map<String, Location> otherLocations;
+	public static Map<String, Location> otherLocations;
 
 	private LocationManager locman;
 	private Location location;
+	
+	PendingIntent pendingIntent;
 	
 	/*******************************************/
 	Button send_button;
@@ -48,6 +58,8 @@ public class ChatClientActivity extends Activity {
 	
 	EditText editNickname;
 	CheckBox checkBox;
+	
+	Button buddy_button;
 	
 	boolean sendPosition = false;
 	
@@ -74,6 +86,7 @@ public class ChatClientActivity extends Activity {
 	
 	public void setLocation(Location _loc){
 		location = _loc;
+		otherLocations.put(mynickname,location);		
 	}
 
 	/**********************************************************************************************/
@@ -84,9 +97,10 @@ public class ChatClientActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_chat_layout);
 		
+		
 		try {
-			//socket = new Socket("129.187.214.232",4000);
-			socket = new Socket("192.168.0.10",4000);
+			socket = new Socket("129.187.214.232",4000);
+			//socket = new Socket("192.168.0.10",4000);
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -99,22 +113,57 @@ public class ChatClientActivity extends Activity {
 		
 		/***********************/
 		
-		// NICKNAME EINGEBEN
+		// Alte Zustaende neu laden
+		
+		if(savedInstanceState != null  && savedInstanceState.getString("mynick") != null)
+		{
+			mynickname = savedInstanceState.getString("mynick");
+			all_text = savedInstanceState.getString("history");
+			
+		}
+		
+		
+		
+		/***********************/
+
+		// Nickname eingeben
 		
 		editNickname = (EditText) findViewById(R.id.edit_nickname);
+		
+		editNickname.setOnTouchListener(new OnTouchListener() {
+			
+			public boolean onTouch(View v, MotionEvent event) {
+				// TODO Auto-generated method stub
+				if(event.getAction()==MotionEvent.ACTION_DOWN)
+				{
+					editNickname.setText("");
+					return true;
+				}
 				
+				return false;
+			}
+		});
+				
+
 		editNickname.setOnKeyListener(new OnKeyListener() {
 			
-
+			
 			public boolean onKey(View arg0, int keyCode, KeyEvent event) {
 				// TODO Auto-generated method stub
 
 				if(event.getAction() == KeyEvent.ACTION_DOWN){
 					
 					if(keyCode == KeyEvent.KEYCODE_ENTER){
-									
+						
+						otherLocations.remove(mynickname);
 						mynickname = editNickname.getText().toString();
+						
 						editNickname.setText("Your nick is: " + mynickname);
+						
+						if(location!=null && sendPosition)
+						{
+							otherLocations.put(mynickname,location);
+						}
 						return true;
 					}
 				}
@@ -133,8 +182,12 @@ public class ChatClientActivity extends Activity {
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				if(isChecked){
 					sendPosition = true;
+					otherLocations.put(mynickname,location);
+
+					
 				} else {
 					sendPosition = false;
+					otherLocations.remove(mynickname);
 				}
 			}
 		});
@@ -198,9 +251,47 @@ public class ChatClientActivity extends Activity {
 			
 		});
 		
+		/***********************/		
+		
+		// Show Buddys on MAP
+		
+		buddy_button = (Button) findViewById(R.id.buddy_button);
+		
+		buddy_button.setOnClickListener(new OnClickListener() {
+			
+			public void onClick(View v) {
+				
+				
+				Intent buddy_activity = new Intent(ChatClientActivity.this,BuddyMapActivity.class);
+				
+				startActivity(buddy_activity);
+				
+				
+				
+			}
+		});
+		
+		
 		/***********************/
 		
+		// Broadcast-Receiver aktivieren && registrieren
+		
+		Resources res = getResources();
+		Intent buddy_found = new Intent(res.getString(R.string.found_buddy));
+		
+		
+        pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 1, buddy_found , PendingIntent.FLAG_CANCEL_CURRENT);
+
+        ProximityCheckerReceiver proximityCheckerReceiver = new ProximityCheckerReceiver();
+        
+        registerReceiver(proximityCheckerReceiver , new IntentFilter(res.getString(R.string.found_buddy)));
+		
+
+		/***********************/
+        
 		otherLocations = new HashMap<String, Location>();
+		
+		
 	}
 	
 	/**********************************************************************************************/
@@ -209,16 +300,13 @@ public class ChatClientActivity extends Activity {
 	private void updateGUI(){
 		
 		
-		
-		System.out.println("UpdateGUI--------------------->" + line);
 		chat_ausgabe = (EditText) findViewById(R.id.chat_ausgabe);
 		
-		//line = line.substring(1,line.length()-1) + "\n";
-		
+	
 		
 		parseString();
 		
-		all_text = line + all_text;
+		all_text = line + "\n" + all_text;
 		chat_ausgabe.setText(all_text);
 		line = "";
 		
@@ -280,7 +368,6 @@ public class ChatClientActivity extends Activity {
 	
 		if(sendPosition && location != null)
 		{
-			System.out.println("----------->  LOCATION <-------------");
 			String pos_string = "*" + location.getLatitude() + " " + location.getLongitude();
 			text = "#"+mynickname+":"+msg+pos_string+"~";
 		}
@@ -322,15 +409,21 @@ public class ChatClientActivity extends Activity {
 			
 			Location l = new Location(LocationManager.GPS_PROVIDER);
 
+			positionLine.replace(',', '.');
 			String[] latLong = positionLine.split(" ");
 			l.setLatitude(Double.parseDouble(latLong[0]));
 			l.setLongitude(Double.parseDouble(latLong[1]));
 			
-			// Speichert NICK und POSITION in OTHERLOCATION-MAP
-			if(mynickname == nick)
-			{
-				otherLocations.put(nick, l);
-			}
+			// Speichert NICK und POSITION in OTHERLOCATION-MAP		
+			
+			otherLocations.put(nick, l);
+			
+			// Fuegt zum LocationManager Proximity Alert hinzu
+	        if(mynickname != nick)
+	        {
+	        	locman.addProximityAlert(l.getLatitude(), l.getLongitude(), 50f, -1, pendingIntent);
+	        }
+			
 			
 			line = line.substring(1,line.indexOf("*"));
 		}
@@ -342,6 +435,36 @@ public class ChatClientActivity extends Activity {
 	}
 	
 	/**********************************************************************************************/
+	
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		// TODO Auto-generated method stub
+		
+	
+		outState.putString("mynick", mynickname);
+		outState.putString("history", all_text);
+		super.onSaveInstanceState(outState);
+		
+		
+	}
+
+	/**********************************************************************************************/
+	
+	public class ProximityCheckerReceiver extends BroadcastReceiver {
+		 
+	    @Override
+	    public void onReceive(Context context, Intent intent) {
+
+
+	    	System.out.println("-------------->        ALLLERT  <------------------------");
+
+	    }
+	}
 
 
 }
+
+
+
+
+

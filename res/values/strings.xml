@@ -16,6 +16,9 @@
 <string name="ekahau_update_intent_name">ekahau_update</string>
 <string name="nickname_promt">choose your nick</string>
 <string name="send_position">Send Position</string>
+<string name="buddy_button">Show Buddys</string>
+<string name="found_buddy">found_buddy</string>
+
 </resources>
 
 

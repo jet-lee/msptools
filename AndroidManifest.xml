@@ -18,6 +18,8 @@
 		<activity android:name="MSPClientActivity" android:label="@string/msp_client_activity_name"></activity>
 		<activity android:name="GsmMonitorActivity" android:label="GsmMonitorActivity"></activity>
 		<activity android:name="OettingenActivity" android:label="OettingenActivity"></activity>
+		<activity android:name="BuddyMapActivity" android:label="BuddyMapActivity"></activity>
+
 						
 		<activity android:name="EkahauMapActivity" android:label="EkahauMapActivity"></activity>
 		<activity android:name="EkahauActivity" android:label="EkahauActivity"></activity>
