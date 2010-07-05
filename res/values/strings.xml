@@ -19,6 +19,10 @@
 <string name="buddy_button">Show Buddys</string>
 <string name="found_buddy">found_buddy</string>
 
+<string name="camera_activity_name">Camera</string>
+<string name="location_foto_activity_name">Create Footprint</string>
+<string name="upload_file_name">Insert filename here (without type)</string>
+
 </resources>
 
 

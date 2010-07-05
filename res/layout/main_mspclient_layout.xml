@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:layout_width="wrap_content"
-  android:layout_height="wrap_content">
-</LinearLayout>
+<RelativeLayout 
+android:id="@+id/RelativeLayout01" 
+android:layout_width="fill_parent" 
+android:layout_height="fill_parent" 
+xmlns:android="http://schemas.android.com/apk/res/android">
+	<com.google.android.maps.MapView 
+  	android:id="@+id/maxi_map_view" 
+  	android:enabled="true" 
+  	android:clickable="true" 
+  	android:apiKey="0d82zFO7edFfnPxscc_At99JpU44wfE4ns-Jhwg" 
+  	android:layout_width="fill_parent" 
+  	android:layout_height="fill_parent" 
+  	/>
+	<CheckBox
+	android:text="picture view enabled" 
+	android:id="@+id/sub_view_picture" 
+	android:layout_width="wrap_content" 
+	android:layout_height="wrap_content"
+	android:layout_alignParentRight="true" 
+	android:layout_alignParentBottom="true" 
+	android:checked="false"/>
+	<Button
+	android:id="@+id/sub_take_picture" 
+	android:layout_alignParentLeft="true" 
+	android:layout_alignParentBottom="true" 
+	android:layout_width="wrap_content" 
+	android:text="Create Footprint" 
+	android:layout_height="wrap_content"></Button>
+</RelativeLayout>

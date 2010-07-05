@@ -51,10 +51,11 @@ public class BuddyMapActivity extends MapActivity{
 		mapController = mapView.getController();
 		mapController.setZoom(17);
 		
-		if(ChatClientActivity.otherLocations.containsKey(ChatClientActivity.mynickname))
-		{
-			Location location = ChatClientActivity.otherLocations.get(ChatClientActivity.mynickname);
+		Location location = ChatClientActivity.otherLocations.get(ChatClientActivity.mynickname);
 		
+		if(ChatClientActivity.otherLocations.containsKey(ChatClientActivity.mynickname)&&(location!=null))
+		{
+			
 			Double longitude = location.getLongitude()*1E6;
 			Double latitude = location.getLatitude()*1E6;
 			GeoPoint geoPoint = new GeoPoint(latitude.intValue(), longitude.intValue());

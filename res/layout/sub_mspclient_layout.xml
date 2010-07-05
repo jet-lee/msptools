@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<RelativeLayout 
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		android:id="@+id/RelativeLayout01" 
+		android:layout_width="fill_parent" 
+		android:layout_height="fill_parent"
+		>
+	<ImageView 
+	android:id="@+id/camera_image_view" 
+	android:layout_width="wrap_content" 
+	android:layout_height="wrap_content"
+	android:layout_centerHorizontal = "true"
+	android:layout_centerVertical = "true"
+	 />
+	<Button
+	android:id="@+id/picture_button"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:textSize="14sp"
+	android:text="Open camera mode to take a picture"
+	/>
+	<Button
+	android:id="@+id/save_button"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:textSize="16sp"
+	android:text="Save"
+	android:layout_alignParentLeft="true"
+  	android:layout_alignParentBottom="true" 
+  	/>
+	<EditText
+	android:id="@+id/image_information_textview"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:layout_below="@id/picture_button"
+	/>
+			
+		<FrameLayout
+			android:layout_height="wrap_content" 
+			android:id="@+id/framer" 
+			android:layout_width="wrap_content"
+			android:layout_marginRight="5sp" 
+  			android:layout_marginBottom="5sp" 
+  			android:minHeight="100sp" 
+  			android:minWidth="100sp"
+  			android:layout_alignParentRight="true"
+  			android:layout_alignParentBottom="true" 
+  			>
+  			<com.google.android.maps.MapView 
+  			android:id="@+id/mini_map_view" 
+  			android:enabled="true" 
+  			android:clickable="true" 
+  			android:apiKey="0d82zFO7edFd8aWo8c_kFDqdT7vOvpGRdR4Wa0A" 
+  			android:layout_width="fill_parent" 
+  			android:layout_height="fill_parent" 
+  			 />
+		</FrameLayout>
+	</RelativeLayout>
+  		
+  		
+

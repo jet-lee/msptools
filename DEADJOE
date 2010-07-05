@@ -1,0 +1,83 @@
+
+*** These modified files were found in JOE when it aborted on Mon Jul  5 17:16:43 2010
+*** JOE was aborted by UNIX signal 15
+
+*** File '(Unnamed)'
+.git/COMMIT_EDITMSG
+
+*** File '.git/COMMIT_EDITMSG'
+jet-lee 5.07.2010 
+ Please enter the commit message for your changes.  Lines
+# starting with '#' will be ignored, and an empty message aborts the commit. 
+# On branch master Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	modified:   AndroidManifest.xml
+#	modified:   bin/classes.dex
+#	modified:   bin/de/lmu/ifi/mdsg/msp/BuddyMapActivity.class
+#	modified:   bin/de/lmu/ifi/mdsg/msp/BuddyPositionOverlay.class
+#	modified:   bin/de/lmu/ifi/mdsg/msp/ChatClientActivity$1.class
+#	modified:   bin/de/lmu/ifi/mdsg/msp/ChatClientActivity$2.class
+#	modified:   bin/de/lmu/ifi/mdsg/msp/ChatClientActivity$3.class
+#	modified:   bin/de/lmu/ifi/mdsg/msp/ChatClientActivity$4.class
+#	modified:   bin/de/lmu/ifi/mdsg/msp/ChatClientActivity$5.class
+#	modified:   bin/de/lmu/ifi/mdsg/msp/ChatClientActivity$6.class
+#	modified:   bin/de/lmu/ifi/mdsg/msp/ChatClientActivity$7.class
+#	modified:   bin/de/lmu/ifi/mdsg/msp/ChatClientActivity$8.class
+#	modified:   bin/de/lmu/ifi/mdsg/msp/ChatClientActivity$ProximityCheckerReceiver.class
+#	modified:   bin/de/lmu/ifi/mdsg/msp/ChatClientActivity.class
+#	new file:   bin/de/lmu/ifi/mdsg/msp/CreateFootprintActivity$1.class
+#	new file:   bin/de/lmu/ifi/mdsg/msp/CreateFootprintActivity$2.class
+#	new file:   bin/de/lmu/ifi/mdsg/msp/CreateFootprintActivity$3.class
+#	new file:   bin/de/lmu/ifi/mdsg/msp/CreateFootprintActivity.class
+#	modified:   bin/de/lmu/ifi/mdsg/msp/EkahauActivity$WifiReceiver.class
+#	modified:   bin/de/lmu/ifi/mdsg/msp/EkahauActivity.class
+#	modified:   bin/de/lmu/ifi/mdsg/msp/EkahauMapActivity.class
+#	new file:   bin/de/lmu/ifi/mdsg/msp/Footprint.class
+#	modified:   bin/de/lmu/ifi/mdsg/msp/GPSActivity.class
+#	modified:   bin/de/lmu/ifi/mdsg/msp/GSMActivity.class
+#	new file:   bin/de/lmu/ifi/mdsg/msp/HttpFileUploader.class
+#	new file:   bin/de/lmu/ifi/mdsg/msp/MSPClientActivity$1.class
+#	new file:   bin/de/lmu/ifi/mdsg/msp/MSPClientActivity$2.class
+#	new file:   bin/de/lmu/ifi/mdsg/msp/MSPClientActivity$3.class
+#	new file:   bin/de/lmu/ifi/mdsg/msp/MSPClientActivity$4.class
+#	new file:   bin/de/lmu/ifi/mdsg/msp/MSPClientActivity$5.class
+#	modified:   bin/de/lmu/ifi/mdsg/msp/MSPClientActivity.class
+#	modified:   bin/de/lmu/ifi/mdsg/msp/MainActivity$1.class
+#	modified:   bin/de/lmu/ifi/mdsg/msp/MainActivity.class
+#	new file:   bin/de/lmu/ifi/mdsg/msp/R$color.class
+#	modified:   bin/de/lmu/ifi/mdsg/msp/R$drawable.class
+#	modified:   bin/de/lmu/ifi/mdsg/msp/R$id.class
+#	modified:   bin/de/lmu/ifi/mdsg/msp/R$layout.class
+#	modified:   bin/de/lmu/ifi/mdsg/msp/R$string.class
+#	modified:   bin/de/lmu/ifi/mdsg/msp/R.class
+#	new file:   bin/de/lmu/ifi/mdsg/msp/ThumbnailOverlay.class
+#	new file:   bin/de/lmu/ifi/mdsg/msp/UploadActivity$1.class
+#	new file:   bin/de/lmu/ifi/mdsg/msp/UploadActivity$2.class
+#	new file:   bin/de/lmu/ifi/mdsg/msp/UploadActivity$3.class
+#	new file:   bin/de/lmu/ifi/mdsg/msp/UploadActivity$4.class
+#	new file:   bin/de/lmu/ifi/mdsg/msp/UploadActivity.class
+#	new file:   bin/de/lmu/ifi/mdsg/msp/ViewMapFotosActivity$1.class
+#	new file:   bin/de/lmu/ifi/mdsg/msp/ViewMapFotosActivity.class
+#	modified:   bin/de/lmu/ifi/mdsg/msp/wlan/EkahauDataCatcher.class
+#	modified:   bin/msptools.apk
+#	modified:   bin/resources.ap_
+#	modified:   gen/de/lmu/ifi/mdsg/msp/R.java
+#	modified:   res/layout/main_mspclient_layout.xml
+#	new file:   res/layout/sub_mspclient_layout.xml
+#	new file:   res/layout/upload_layout.xml
+#	new file:   res/layout/view_image_layout.xml
+#	new file:   res/values/colors.xml
+#	modified:   res/values/strings.xml
+#	modified:   src/de/lmu/ifi/mdsg/msp/BuddyMapActivity.java
+#	modified:   src/de/lmu/ifi/mdsg/msp/BuddyPositionOverlay.java
+#	modified:   src/de/lmu/ifi/mdsg/msp/ChatClientActivity.java
+#	new file:   src/de/lmu/ifi/mdsg/msp/CreateFootprintActivity.java
+#	new file:   src/de/lmu/ifi/mdsg/msp/Footprint.java
+#	new file:   src/de/lmu/ifi/mdsg/msp/HttpFileUploader.java
+#	modified:   src/de/lmu/ifi/mdsg/msp/MSPClientActivity.java
+#	modified:   src/de/lmu/ifi/mdsg/msp/MainActivity.java
+#	new file:   src/de/lmu/ifi/mdsg/msp/ThumbnailOverlay.java
+#	new file:   src/de/lmu/ifi/mdsg/msp/UploadActivity.java
+#	new file:   src/de/lmu/ifi/mdsg/msp/ViewMapFotosActivity.java
+#

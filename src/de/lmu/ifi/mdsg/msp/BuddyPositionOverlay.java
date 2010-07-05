@@ -38,6 +38,8 @@ public class BuddyPositionOverlay extends Overlay {
 					String name = iterator.next();
 					Location location = liste.get(name);
 					
+					if(location!=null)
+					{
 						//get current location
 					Double longitude = location.getLongitude()*1E6;
 					Double latitude = location.getLatitude()*1E6;
@@ -65,6 +67,7 @@ public class BuddyPositionOverlay extends Overlay {
 					canvas.drawRoundRect(backRect, 5, 5, backPaint);
 					
 					canvas.drawText(name, p.x+2*radius, p.y, paint);
+					}
 				}
 			}
 			

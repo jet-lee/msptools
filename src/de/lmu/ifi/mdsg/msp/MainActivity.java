@@ -64,6 +64,14 @@ public class MainActivity extends Activity {
 					startActivity(ekahauActivity);
 					break;
 					
+			
+				case 4:
+					
+					Intent mspClientActivity = new Intent(MainActivity.this,MSPClientActivity.class);
+					
+					startActivity(mspClientActivity);
+					break;
+					
 				}
 				
 

@@ -33,6 +33,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 
@@ -48,8 +49,8 @@ public class ChatClientActivity extends Activity {
 
 	private LocationManager locman;
 	private Location location;
-	
-	PendingIntent pendingIntent;
+
+	Resources res;
 	
 	/*******************************************/
 	Button send_button;
@@ -182,8 +183,8 @@ public class ChatClientActivity extends Activity {
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				if(isChecked){
 					sendPosition = true;
+						
 					otherLocations.put(mynickname,location);
-
 					
 				} else {
 					sendPosition = false;
@@ -276,11 +277,7 @@ public class ChatClientActivity extends Activity {
 		
 		// Broadcast-Receiver aktivieren && registrieren
 		
-		Resources res = getResources();
-		Intent buddy_found = new Intent(res.getString(R.string.found_buddy));
-		
-		
-        pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 1, buddy_found , PendingIntent.FLAG_CANCEL_CURRENT);
+		res = getResources();
 
         ProximityCheckerReceiver proximityCheckerReceiver = new ProximityCheckerReceiver();
         
@@ -421,7 +418,13 @@ public class ChatClientActivity extends Activity {
 			// Fuegt zum LocationManager Proximity Alert hinzu
 	        if(mynickname != nick)
 	        {
-	        	locman.addProximityAlert(l.getLatitude(), l.getLongitude(), 50f, -1, pendingIntent);
+	        	
+	        	Intent intent = new Intent(res.getString(R.string.found_buddy));
+	        	
+	        	intent.putExtra("nick", nick);
+	
+	            PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 1, intent , PendingIntent.FLAG_CANCEL_CURRENT);
+	        	locman.addProximityAlert(l.getLatitude(), l.getLongitude(), 50f, 180000, pendingIntent);
 	        }
 			
 			
@@ -456,8 +459,11 @@ public class ChatClientActivity extends Activity {
 	    public void onReceive(Context context, Intent intent) {
 
 
-	    	System.out.println("-------------->        ALLLERT  <------------------------");
+	    	System.out.println("-------------->        ALLLERT " + intent.getStringExtra("nick") + " <------------------------");
+	    	Toast toast = Toast.makeText(ChatClientActivity.this, "Achtung "+intent.getStringExtra("nick"), Toast.LENGTH_LONG);
 
+	    	toast.show();
+	    	
 	    }
 	}
 
