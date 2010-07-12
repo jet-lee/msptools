@@ -1,9 +1,15 @@
 package de.lmu.ifi.mdsg.msp;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.net.UnknownHostException;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -22,6 +28,10 @@ import de.lmu.ifi.mdsg.msp.HttpFileUploader;
 
 public class UploadActivity extends Activity implements OnClickListener {
 
+	
+	Socket socket;
+	
+	
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -43,6 +53,8 @@ public class UploadActivity extends Activity implements OnClickListener {
 				CreateFootprintActivity.BUNDLE_EXTRA);
 		descr = getIntent().getStringExtra(
 				CreateFootprintActivity.DESCRIPTION_EXTRA);
+		
+		
 	}
 
 	// Need handler for callbacks to the UI thread
@@ -119,6 +131,37 @@ public class UploadActivity extends Activity implements OnClickListener {
 		Toast toast = Toast.makeText(UploadActivity.this, msg,
 				Toast.LENGTH_SHORT);
 		toast.show();
+		
+		
+		/****************************************************/
+		descr += "\n";
+		descr += "Thumbnail: th_"+name+"\n";
+		descr += "Image: "+name+"\n";
+		
+		System.out.println("-----------__> Upload-Activity "+ descr);
+		
+
+		try {
+				socket = new Socket("msp.mobile.ifi.lmu.de",4001);
+				
+				PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())),false);
+				
+				out.write(descr);
+				out.flush();
+				
+				System.out.println(" SEND MESSAGE ------------------>");
+				
+				out.close();
+				socket.close();
+
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		/****************************************************/
 
 		Thread t = new Thread() {
 			public void run() {

@@ -27,6 +27,7 @@ import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapController;
 import com.google.android.maps.MapView;
 import com.google.android.maps.MyLocationOverlay;
+import com.google.android.maps.Overlay;
 
 import de.lmu.ifi.mdsg.msp.Footprint;
 import de.lmu.ifi.mdsg.msp.ThumbnailOverlay;
@@ -43,7 +44,9 @@ public class MSPClientActivity extends MapActivity {
 	CheckBox viewPicture;
 
 	private LocationManager locMan;
-
+	
+	public List<Footprint> footprints;
+	//private List<Footprint> tmp_footprints;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -52,6 +55,7 @@ public class MSPClientActivity extends MapActivity {
 		takePicture = (Button)findViewById(R.id.sub_take_picture);
 		viewPicture = (CheckBox)findViewById(R.id.sub_view_picture);
 		viewPicture.setChecked(false);
+		
 		
 		maxiMap = (MapView)findViewById(R.id.maxi_map_view);
 		
@@ -69,9 +73,16 @@ public class MSPClientActivity extends MapActivity {
 			
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				if(isChecked){
-					//TODO change ThumbnailOverlay to tapable
-				} else {
+					//TODO change ThumbnailOverlay to tapable					
+					thumbnails.setTapable(true);
+					maxiMap.postInvalidate();
+	
+
+				} else{
 					//TODO change ThumbnailOverlay to not tapable
+
+					thumbnails.setTapable(false);
+					maxiMap.postInvalidate();
 				}
 			}
 		});
@@ -83,15 +94,29 @@ public class MSPClientActivity extends MapActivity {
 		maxiMap.setBuiltInZoomControls(true);
 		maxiMap.displayZoomControls(true);
 		mapControl.setZoom(18);
-
+		
 		// show location on map
 		overlay = new MyLocationOverlay(getApplicationContext(), maxiMap);
 		
 		maxiMap.getOverlays().add(overlay);
 		overlay.enableMyLocation();
 		
+		
+		/********************************************/
 		//TODO add ThumbnailOverlay
+		
+		/*******/
+		thumbnails = new ThumbnailOverlay(this);
+		/*******/
+		
+		List<Overlay> overlays = maxiMap.getOverlays();
+		overlays.add(thumbnails);
+		maxiMap.postInvalidate();
 
+		
+
+
+		/******************************************/
 		locMan = (LocationManager)getSystemService(LOCATION_SERVICE);
 		locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER, 15000, 20f, new LocationListener() {
 			
@@ -127,6 +152,10 @@ public class MSPClientActivity extends MapActivity {
 			@Override
 			public void run(){
 				//TODO fetch thumbnails and add the to ThumbnailOverlay
+				footprints = connect(SERVER);
+				//tmp_footprints = footprints;
+				
+				
 			}
 		};
 		fetchThumbnails.start();
@@ -184,6 +213,7 @@ public class MSPClientActivity extends MapActivity {
 							URL uriTh = new URL(SERVER + "/images/" + thumbnail);
 							HttpURLConnection conTh = (HttpURLConnection) uriTh.openConnection();
 							thumbnailImage = BitmapFactory.decodeStream(conTh.getInputStream());
+							conTh.disconnect();
 							Log.w(MSPClientActivity.class.getName(), "got Thumbnail-Bitmap from server!");
 					}
 					if (line.trim().startsWith("<gps>")) {
@@ -221,7 +251,8 @@ public class MSPClientActivity extends MapActivity {
 	public void activateFotoView(Footprint chosen) {
 		ViewMapFotosActivity.setFootprint(chosen);
 		//TODO start new ViewMapFotosActivity
-		
+		Intent viewMapFotos = new Intent(MSPClientActivity.this,ViewMapFotosActivity.class);
+		startActivity(viewMapFotos);
 	}
 
 }
