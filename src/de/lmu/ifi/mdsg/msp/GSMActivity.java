@@ -78,21 +78,23 @@ public class GSMActivity extends MapActivity {
 				
 				StringBuffer buffer = new StringBuffer();
 				
-				buffer.append("CellLocation :"+location.toString()+" Signalstaerke :"+ (-113 + 2*signalstrength)
-					+" CellID :"+gsmCellLocation.getCid()+ " Networktyp :"+telephonyManager.getNetworkType());
+				if(gsmCellLocation != null)
+				{
+					buffer.append("CellLocation :"+location.toString()+" Signalstaerke :"+ (-113 + 2*signalstrength)
+							+" CellID :"+gsmCellLocation.getCid()+ " Networktyp :"+telephonyManager.getNetworkType());
 				
-				for(int i = 0; i < neighboringCells.size(); i++){
-					buffer.append(" Neighbor Signalstärke " + i + ": " + (-113 + 2*neighboringCells.get(i).getRssi()));
-					buffer.append(" Neighbour CellID "+ i +": "+neighboringCells.get(i).getCid());
-				}
+					for(int i = 0; i < neighboringCells.size(); i++){
+						buffer.append(" Neighbor Signalstärke " + i + ": " + (-113 + 2*neighboringCells.get(i).getRssi()));
+						buffer.append(" Neighbour CellID "+ i +": "+neighboringCells.get(i).getCid());
+					}
 
 				
 				
-				gsmTextView.setText(buffer.toString());		
+					gsmTextView.setText(buffer.toString());		
 				
-			}		
+				}		
 		
-		};
+		}};
 		
 		telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
 		
